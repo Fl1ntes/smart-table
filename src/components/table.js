@@ -32,7 +32,8 @@ export function initTable(settings, onAction) {
         setTimeout(onAction());
     });
 
-    root.container.addEventListener('reset', () => {
+    root.container.addEventListener('submit', (e) => {
+        e.preventDefault();
         onAction(e.submitter)
     });    
 
@@ -47,6 +48,8 @@ export function initTable(settings, onAction) {
                     row.elements[key].textContent = item[key];
                 };
             });
+            
+            return row.container;
         });
         root.elements.rows.replaceChildren(...nextRows);
     }
