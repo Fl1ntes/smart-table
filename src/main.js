@@ -23,6 +23,7 @@ const {data, ...indexes} = initData(sourceData);
  */
 function collectState() {
     const state = processFormData(new FormData(sampleTable.container));
+    state.total = [state.totalFrom, state.totalTo];
     const rowsPerPage = parseInt(state.rowsPerPage);
     const page = parseInt(state.page ?? 1);  
 
@@ -78,7 +79,7 @@ const applyFiltering = initFiltering(sampleTable.filter.elements, {    // пер
     searchBySeller: indexes.sellers                                    // для элемента с именем searchBySeller устанавливаем массив продавцов
 });
 
-const applySearching = initSearching(sampleTable.search.elements.search)
+const applySearching = initSearching(sampleTable.search.elements.search.name)
 
 const appRoot = document.querySelector('#app');
 appRoot.appendChild(sampleTable.container);
